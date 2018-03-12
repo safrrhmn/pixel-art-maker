@@ -1,2 +1,2 @@
 # pixel-art-maker
-Vanilla JS Edition
+An interactive Pixel Art Grid
