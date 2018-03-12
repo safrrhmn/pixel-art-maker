@@ -4,23 +4,34 @@
 <head>
   <title>Pixel Art Maker!</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Monoton">
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/vader/theme.min.css">
+
+  <script src="designs.js"></script>
+
+  <!--link rel="stylesheet" href="styles.css"-->
+
 </head>
 
 <body>
   <h1 id="header">Lab: Pixel Art Maker</h1>
-  <h2>Choose Grid Size</h2>
   <form id="sizePicker">
+    <h2>Choose Grid Size</h2>
     <div id="formDiv">
-      Grid Height:
-      <input class="input" type="number" id="inputHeight" name="height" max="50" min="1" value="1" required> Grid Width:
-      <input class="input" type="number" id="inputWeight" name="width" max="50" min="1" value="1">
-      <input class="button input" type="submit" id="submit" onclick="makeGrid();">
-      <input class="button input" type="reset" id="reset" onclick="resetDom();">
-      <button class="button input" id="resetCanvas" onclick="resetGrid();">Clear Canvas</button>
+      <div id="sortable">
+        <p>Grid Height:
+          <input class="input" type="number" id="inputHeight" name="height" value="1" required>
+        </p>
+        <p>
+          Grid Width:
+          <input class="input" type="number" id="inputWidth" name="width" value="1" required>
+        </p>
+      </div>
+      <button class="button input" type="submit" id="submit">Submit</button>
+      <button class="button input" type="reset" id="reset" hidden>Reset</button>
+      <button class="button input" id="resetCanvas" hidden>Clear Canvas</button>
     </div>
 
   </form>
@@ -31,7 +42,7 @@
   <h2>Design Canvas</h2>
   <table id="pixelCanvas"></table>
 
-  <script src="designs.js"></script>
+
 </body>
 
 </html>
