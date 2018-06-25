@@ -1,0 +1,15 @@
+tr {
+  height: 50px;
+}
+
+td {
+  width: 50px;
+  border: dashed;
+}
+td:hover {
+  cursor: pointer;
+}
+table {
+  /*background-image: url("https://3.bp.blogspot.com/_jFM-Fd8NDFE/TLhmRK1h8AI/AAAAAAAAKcU/NKNPe051PbA/s1600/OldCanvas-5.jpg");*/
+  margin: 0 auto;
+}

@@ -3,34 +3,51 @@ const GRID_HEIGHT = "inputHeight";
 const GRID_WIDTH = "inputWidth";
 const SUBMIT = "submit";
 const CANVAS = "pixelCanvas";
-let vCANVAS;
-let vELEM_SUBMIT;
-let vHEIGHT;
-let vWIDTH;
+const COLOR = "colorPicker";
+let vCanvas;
+let vElemSubmit;
+let vHeight;
+let vWidth;
+let vCurrentBackgroundColor;
+let vDefaultColor;
 
 PixelArtMaker.Events = {
-  onClickSubmit: function(onElemnet, element) {}
+  paint: function() {
+    document.getElementById(CANVAS).addEventListener("click", function(ev) {
+      let selectedColor = document.getElementById(COLOR).value;
+      ev.target.style.backgroundColor = selectedColor;
+    });
+  },
+  clear: function() {
+    document.getElementById(CANVAS).addEventListener("dblclick", function(ev) {
+      ev.target.style.backgroundColor = PixelArtMaker.vDefaultColor;
+    });
+  }
 };
 
 PixelArtMaker.Grid = {
   createProperteis: function() {
-    PixelArtMaker.vELEM_SUBMIT = document.getElementById(SUBMIT);
-    PixelArtMaker.vHEIGHT = document.getElementById(GRID_HEIGHT).value;
-    PixelArtMaker.vWIDTH = document.getElementById(GRID_WIDTH).value;
-    PixelArtMaker.vCANVAS = document.getElementById(CANVAS);
+    PixelArtMaker.vElemSubmit = document.getElementById(SUBMIT);
+    PixelArtMaker.vHeight = document.getElementById(GRID_HEIGHT).value;
+    PixelArtMaker.vWidth = document.getElementById(GRID_WIDTH).value;
+    PixelArtMaker.vCanvas = document.getElementById(CANVAS);
+    PixelArtMaker.vDefaultColor = document.getElementById(
+      CANVAS
+    ).style.backgroundColor;
   },
   createGrid: function() {
     console.log(
-      `Grid vHEIGHT is ${PixelArtMaker.vHEIGHT} and vWIDTH is ${
-        PixelArtMaker.vWIDTH
+      `Grid vHeight is ${PixelArtMaker.vHeight} and vWidth is ${
+        PixelArtMaker.vWidth
       }`
     );
-    for (let i = 0; i < PixelArtMaker.vHEIGHT; i++) {
-      PixelArtMaker.vCANVAS.append(
-        "<tr class='row'>" +
-          "<td class='col'></td>".repeat(PixelArtMaker.vWIDTH) +
-          "</tr>"
-      );
+    for (let i = 0; i < PixelArtMaker.vHeight; i++) {
+      let tr = document.createElement("tr");
+      for (let width = 0; width < PixelArtMaker.vWidth; width++) {
+        let td = document.createElement("td");
+        tr.append(td);
+      }
+      document.getElementById(CANVAS).append(tr);
     }
   }
 };
@@ -40,5 +57,7 @@ document.addEventListener("DOMContentLoaded", function() {
     ev.preventDefault();
     PixelArtMaker.Grid.createProperteis();
     PixelArtMaker.Grid.createGrid();
+    PixelArtMaker.Events.paint();
+    PixelArtMaker.Events.clear();
   });
 });
