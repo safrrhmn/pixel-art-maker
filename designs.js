@@ -3,6 +3,7 @@ const GRID_HEIGHT = "inputHeight";
 const GRID_WIDTH = "inputWidth";
 const SUBMIT = "submit";
 const CANVAS = "pixelCanvas";
+const CANVASDIV = "tableDiv";
 const COLOR = "colorPicker";
 const FORM = "sizePicker";
 const RESET = "restart";
@@ -54,7 +55,7 @@ PixelArtMaker.Grid = {
       CANVAS
     ).style.backgroundColor;
   },
-  createGrid: function() {
+  makeGrid: function() {
     for (let i = 0; i < PixelArtMaker.vHeight; i++) {
       let tr = document.createElement("tr");
       for (let width = 0; width < PixelArtMaker.vWidth; width++) {
@@ -67,16 +68,17 @@ PixelArtMaker.Grid = {
   destroyForm: function() {
     document.getElementById(FORM).remove();
     document.getElementById(RESET).removeAttribute("hidden");
+    document.getElementById(CANVASDIV).removeAttribute("hidden");
   }
 };
 
 document.addEventListener("DOMContentLoaded", function() {
-  document.getElementById("submit").addEventListener("click", function(ev) {
+  document.getElementById(SUBMIT).addEventListener("click", function(ev) {
     ev.preventDefault();
     PixelArtMaker.Grid.createProperteis();
     PixelArtMaker.Events.clearAll();
     PixelArtMaker.Grid.destroyForm();
-    PixelArtMaker.Grid.createGrid();
+    PixelArtMaker.Grid.makeGrid();
     PixelArtMaker.Events.paint();
     PixelArtMaker.Events.clear();
     PixelArtMaker.Events.restart();
